@@ -1,0 +1,1060 @@
+:root {
+  --bg: #000000;
+  --fg: #ffffff;
+  --accent: #d555a4;
+  --max-width: 1400px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+/* Removidos estilos del loader y agregadas animaciones de entrada para secciones */
+
+/* Animaciones de entrada suaves para secciones */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animación escalonada para las tarjetas de proyectos */
+.fade-in-section.is-visible .card {
+  animation: fadeInUp 0.1s ease-out forwards;
+  opacity: 0;
+}
+
+.fade-in-section.is-visible .card:nth-child(1) {
+  animation-delay: 0s;
+}
+.fade-in-section.is-visible .card:nth-child(2) {
+  animation-delay: 0s;
+}
+.fade-in-section.is-visible .card:nth-child(3) {
+  animation-delay: 0.1s;
+}
+.fade-in-section.is-visible .card:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.fade-in-section.is-visible .card:nth-child(5) {
+  animation-delay: 0.3s;
+}
+.fade-in-section.is-visible .card:nth-child(6) {
+  animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  z-index: 1000;
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+header img {
+  height: 48px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+header img:hover {
+  transform: scale(1.05);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.logo img {
+  height: 80px;
+  transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+}
+
+nav ul {
+  display: flex;
+  gap: 28px;
+  list-style: none; /* Cambiado list_style a list-style para quitar los puntos */
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease, transform 0.2s ease;
+  position: relative;
+}
+
+/* Efecto de subrayado animado mejorado */
+nav a:not(.btn-contact)::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+nav a:not(.btn-contact):hover::after {
+  width: 100%;
+}
+
+nav a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Projects */
+.projects {
+  max-width: var(--max-width);
+  margin: 30px auto;
+  padding: 0 20px 60px 20px;
+}
+.projects h2 {
+  margin: 6px 0 18px 0;
+  font-weight: 500;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.img-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.img-container img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+.img-container:hover img {
+  transform: scale(1.05);
+}
+
+/* Overlay animado */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.overlay a {
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  padding: 80px 96px;
+  border-radius: 6px;
+  transition: background .3s ease;
+}
+.overlay a:hover {
+  color: #fff;
+}
+.img-container:hover .overlay {
+  opacity: 1;
+}
+
+/* About */
+.about-section {
+  max-width: var(--max-width);
+  margin: 80px auto 100px;
+  padding: 0 20px;       /* Mantenemos el padding global */
+  padding-left: 20px;    /* Este asegura alineación con las tarjetas */
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* un poquito más de espacio para el texto */
+  gap: 40px;             /* reducido de 60px */
+  align-items: center;
+}
+
+.about-photo {
+  display: flex;
+  justify-content: center;
+}
+
+.photo-frame {
+  width: 100%;
+  max-width: 1000px;
+  aspect-ratio: 1/0.60;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.photo-frame:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* TEXTO */
+.about-content {
+  padding-right: 10px;
+}
+
+.about-title {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.about-description {
+  opacity: 0.9;
+  line-height: 1.55;
+  margin-bottom: 14px;
+  font-size: 1rem;
+}
+
+/* ---- ICONOS DE HERRAMIENTAS ---- */
+/* ---- ICONOS DE HERRAMIENTAS (NUEVO DISEÑO) ---- */
+
+.skills-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 18px;
+  max-width: 100%;
+}
+
+.skill-icon {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.04); /* más sutil que el borde anterior */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s ease, background .3s ease;
+}
+
+.skill-icon:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.1);
+}
+
+.skill-icon img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  display: block;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .about-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 0 10px;
+  }
+  
+  .about-content {
+    padding-right: 0;
+  }
+
+  .skills-grid {
+    justify-items: center;
+  }
+}
+/* Footer */
+footer {
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 28px 60px;
+  margin-top: 40px;
+}
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+.socials {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Animaciones mejoradas de iconos sociales con elevación y brillo */
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.01);
+  transition: all 0.3s ease;
+}
+
+.socials a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(213, 85, 164, 0.15);
+}
+
+.socials svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+.footer-info {
+  opacity: 0.95;
+  font-size: 14px;
+}
+.copyright {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-section {
+    grid-template-columns: 1fr;
+  }
+}
+/* Mejorando responsive para móviles - header, navegación, y banner */
+@media (max-width: 768px) {
+  header {
+    padding: 12px 20px;
+    flex-wrap: wrap;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+
+  nav ul {
+    gap: 16px;
+    font-size: 0.9rem;
+  }
+
+  nav a {
+    font-size: 0.9rem;
+  }
+
+  .btn-contact {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+
+  .banner-container {
+    height: auto; /* Deja que la altura se ajuste al video */
+    min-height: 300px;
+  }
+
+  /* Video se encaja completamente sin recortes */
+  .banner-bg {
+    position: relative; /* Cambiado de absolute a relative */
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Cambiado a contain para que se vea completo */
+  }
+
+  .banner-text {
+    position: absolute; /* Mantiene el texto sobre el video */
+    left: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 88%;
+  }
+
+  .banner-text h1 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .banner-text h2 {
+    font-size: 0.9rem;
+  }
+
+  .banner-text p {
+    font-size: 0.8rem;
+  }
+
+  .projects {
+    padding: 0 16px 40px 16px;
+  }
+
+  .grid {
+    gap: 16px;
+  }
+
+  .img-container img {
+    height: 280px;
+  }
+
+  .overlay a {
+    font-size: 16px;
+    padding: 40px;
+  }
+
+  .about-section {
+    gap: 30px;
+    margin: 20px auto 40px auto;
+  }
+
+  .about-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+  }
+
+  .contact-section {
+    padding: 60px 20px;
+  }
+
+  .contact-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .contact-section p {
+    font-size: 0.95rem;
+  }
+
+  footer {
+    padding: 24px 30px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .footer-info > div:first-child {
+    text-align: center;
+  }
+
+  .socials {
+    justify-content: center;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  header {
+    padding: 10px 16px;
+  }
+
+  .logo img {
+    height: 50px;
+  }
+
+  nav ul {
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 0.85rem;
+  }
+
+  .btn-contact {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+  }
+
+  .banner-container {
+    height: auto;
+    min-height: 250px;
+    border-radius: 8px;
+  }
+
+  .banner-bg {
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .banner-text {
+    position: absolute;
+    left: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 88%;
+    padding: 16px;
+  }
+
+  .banner-text h1 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .banner-text h2 {
+    font-size: 0.8rem;
+  }
+
+  .banner-text p {
+    font-size: 0.75rem;
+  }
+
+  .projects {
+    margin: 20px auto;
+    padding: 0 12px 30px 12px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .img-container img {
+    height: 240px;
+  }
+
+  .overlay a {
+    font-size: 14px;
+    padding: 30px;
+  }
+
+  .about-section {
+    margin: 16px auto 30px auto;
+    padding: 0 16px;
+    gap: 24px;
+  }
+
+  .about-text h2 {
+    font-size: 1.3rem;
+  }
+
+  .about-text p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .contact-section {
+    padding: 50px 16px;
+  }
+
+  .contact-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .contact-section p {
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+
+  .contact-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+
+  footer {
+    padding: 20px 16px;
+  }
+
+  .footer-inner {
+    font-size: 13px;
+  }
+
+  .socials a {
+    width: 38px;
+    height: 38px;
+  }
+
+  .socials svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .copyright {
+    font-size: 12px;
+  }
+}
+/* Ajuste adicional para pantallas muy pequeñas */
+@media (max-width: 380px) {
+  .logo img {
+    height: 45px;
+  }
+
+  nav ul {
+    gap: 8px;
+    font-size: 0.8rem;
+  }
+
+  .banner-container {
+    height: auto;
+    min-height: 220px;
+  }
+
+  .banner-bg {
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .banner-text h1 {
+    font-size: 0.9rem;
+  }
+
+  .banner-text h2 {
+    font-size: 0.75rem;
+  }
+
+  .banner-text p {
+    font-size: 0.7rem;
+  }
+
+  .img-container img {
+    height: 200px;
+  }
+}
+
+/* Banner rediseñado con flexbox: texto a la izquierda, GIF cuadrado a la derecha */
+.banner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 auto 60px auto; /* reducida la separación entre banner y cards (antes 100px) */
+  max-width: var(--max-width);
+  top: 20px;
+}
+
+.banner-container {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 60px 80px;
+}
+
+/* Texto a la izquierda */
+.banner-text {
+  position: relative;
+  color: white;
+  z-index: 2;
+  flex: 1;
+  max-width: 540px;
+  opacity: 0;
+  animation: bannerFadeIn 0.8s ease-out forwards;
+}
+
+.banner-text h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0 0 18px 0;
+}
+
+.banner-text h2 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0 0 6px 0;
+}
+
+.banner-text p {
+  font-size: 0.95rem;
+  font-weight: 300;
+  opacity: 0.95;
+}
+
+/* GIF cuadrado a la derecha */
+ 
+.banner-image {
+  flex-shrink: 0;
+  width: 320px;      /* antes era auto */
+  height: 500px;     /* antes era 400px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: bannerFadeIn 0.8s ease-out 0.2s forwards;
+}
+
+
+.banner-image video,
+.banner-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+  clip-path: inset(0px 0px 40px 0px);
+}
+
+
+/* Renombrada animación para evitar conflictos */
+@keyframes bannerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsivo para tablets */
+@media (max-width: 980px) {
+  .banner-container {
+    padding: 50px 40px;
+    gap: 30px;
+  }
+
+  .banner-text h1 {
+    font-size: 1.6rem;
+  }
+
+  .banner-image {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+/* Responsivo para móviles - apilado vertical */
+@media (max-width: 768px) {
+  .banner-container {
+    flex-direction: column;
+    padding: 40px 30px;
+    min-height: auto;
+    gap: 40px;
+  }
+
+  .banner-text {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .banner-text h1 {
+    font-size: 1.4rem;
+  }
+
+  .banner-text h2 {
+    font-size: 1rem;
+  }
+
+  .banner-text p {
+    font-size: 0.9rem;
+  }
+
+  .banner-image {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .banner-container {
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .banner-text h1 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .banner-text h2 {
+    font-size: 0.9rem;
+  }
+
+  .banner-text p {
+    font-size: 0.8rem;
+  }
+
+  .banner-image {
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 380px) {
+  .banner-container {
+    padding: 25px 16px;
+  }
+
+  .banner-text h1 {
+    font-size: 1.1rem;
+  }
+
+  .banner-text h2 {
+    font-size: 0.85rem;
+  }
+
+  .banner-text p {
+    font-size: 0.75rem;
+  }
+
+  .banner-image {
+    max-width: 240px;
+  }
+}
+
+.socials a svg {
+  fill: white !important;
+  transition: transform 0.2s ease;
+}
+
+.socials a:hover svg {
+  transform: scale(1.1);
+}
+
+section#projects {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 60px;
+  margin-bottom: 60px;
+}
+
+/* Simplificado el botón de contacto - ahora solo cambia a color sólido sin efecto de expansión */
+.btn-contact {
+  padding: 8px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 20px;
+  color: var(--accent);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+/* Efectos de luz más sutiles en botones reduciendo opacidad de sombras */
+.btn-contact:hover {
+  background: var(--accent);
+  color: var(--fg);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(213, 85, 164, 0.15); /* Reducido de 0.3 a 0.15 */
+}
+
+/* CONTACT SECTION */
+.contact-section {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.03));
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.contact-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.contact-section h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.contact-section p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 32px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+/* Botón principal con efecto ripple mejorado */
+.contact-btn {
+  background: var(--accent);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08); /* Reducido de 0.3 a 0.08 */
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.contact-btn:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.contact-btn:hover {
+  background: #ff69b4;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 4px 12px rgba(213, 85, 164, 0.15); /* Reducido de 0.4 a 0.15 */
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 1.2rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.contact-icon:hover {
+  background: var(--accent);
+  transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+  .contact-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  scroll-behavior: smooth;
+  padding-top: 80px;
+}
+
+/* --- FIXED BLACK WIPE REVEAL (FUNCIONA SIEMPRE) --- */
+
+.banner-text {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Barra negra sólida */
+.banner-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* comienza cubriendo TODO */
+  height: 100%;
+  background: #000;
+  z-index: 5; /* encima del texto, al inicio */
+  animation: blackWipeReveal 1s ease forwards;
+}
+
+/* Animación corregida */
+@keyframes blackWipeReveal {
+  0%   { left: 0%; }
+  100% { left: 100%; } /* se desliza hacia la derecha y sale COMPLETAMENTE */
+}
+
+/* El texto aparece después del wipe */
+.banner-text h1,
+.banner-text h2,
+.banner-text p {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: textUp 0.6s ease forwards;
+}
+
+.banner-text h1 { animation-delay: 0.25s; }
+.banner-text h2 { animation-delay: 0.35s; }
+.banner-text p  { animation-delay: 0.45s; }
+
+@keyframes textUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
